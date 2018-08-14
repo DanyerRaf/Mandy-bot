@@ -10,7 +10,7 @@ let raven = require("raven");
 if(config.bot.sentryLink) raven.config(config.bot.sentryLink).install();
 
 async function init() {
-	if(!config.bot.token) {
+	if(!config.token) {
 		console.error("No token found in config.json");
 		process.exit(0);
 	} else if(!config.bot.prefixes) {
@@ -18,7 +18,7 @@ async function init() {
 		process.exit(0);
 	}
 
-	global.bot = new Eris(config.bot.token, {
+	global.bot = new Eris(config.token, {
 		firstShardID: cluster.worker.shardStart,
 		lastShardID: cluster.worker.shardEnd,
 		maxShards: cluster.worker.totalShards,
